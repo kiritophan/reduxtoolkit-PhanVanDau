@@ -3,9 +3,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import TodoModal from './Components/TodoModal';
 import AppHeader from './Components/AppHeader';
 import CheckButton from './Components/CheckButton';
-import Form from 'react-bootstrap/Form';
 import TodoItem from './Components/TodoItem';
-
+import Button from './Components/Button';
+import appContent from './Components/AppContent';
 function App() {
   return (
     <div className="container">
@@ -18,16 +18,15 @@ function App() {
           <TodoModal />
         </div>
         <div>
-          <Form.Select>
-            <option value="All">All</option>
-            <option value="Incomplete">Incomplete</option>
-            <option value="Complete">Complete</option>
-          </Form.Select>
+          <Button/>
         </div>
         
       </div>
       <div style={{ display: 'flex',alignItems: 'center',justifyContent: 'center' }}>
         <TodoItem />
+      </div>
+      <div>
+        <appContent />
       </div>
       
     </div>
