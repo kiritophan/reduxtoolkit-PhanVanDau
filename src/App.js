@@ -1,20 +1,35 @@
 import './App.css';
-import TodoListModal from './Components/TodoModal';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import LayoutVariable from './Components/AppContent';
+import TodoModal from './Components/TodoModal';
+import AppHeader from './Components/AppHeader';
+import CheckButton from './Components/CheckButton';
+import Form from 'react-bootstrap/Form';
+import TodoItem from './Components/TodoItem';
 
 function App() {
   return (
     <div className="container">
-      <h1 style={{ display: 'flex', justifyContent: 'center' }}>To Do List</h1>
-      <div>
-        <TodoListModal />
-
+      <AppHeader />
+      <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+        <div>
+          <CheckButton />
+        </div>
+        <div>
+          <TodoModal />
+        </div>
+        <div>
+          <Form.Select>
+            <option value="All">All</option>
+            <option value="Incomplete">Incomplete</option>
+            <option value="Complete">Complete</option>
+          </Form.Select>
+        </div>
+        
       </div>
-      <div>
-        <LayoutVariable />
+      <div style={{ display: 'flex',alignItems: 'center',justifyContent: 'center' }}>
+        <TodoItem />
       </div>
-
+      
     </div>
   );
 }

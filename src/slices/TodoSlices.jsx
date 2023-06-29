@@ -1,39 +1,24 @@
-import { createSlice } from "@reduxjs/toolkit";
-
-const getInitialTodos = () => {
-    const localTodoList = JSON.parse(window.localStorage.getItem("todoList")) || [];
-    window.localStorage.setItem("todoList", JSON.stringify(localTodoList));
-    return localTodoList;
-};
-
-const initialValue = {
-    todoList: getInitialTodos(),
-    filterStatus: "all",
-};
+import { createSlice, current } from "@reduxjs/toolkit";
 
 export const todoSlice = createSlice({
     name: "todo",
-    initialState: initialValue,
+    initialState: [],
     reducers: {
         addTodo: (state, action) => {
-            state.todoList.push(action.payload);
-            window.localStorage.setItem("todoList", JSON.stringify(state.todoList));
+            state.push(action.payload);
         },
         deleteTodo: (state, action) => {
-            const updatedTodoList = state.todoList.filter((todo) => todo.id !== action.payload);
-            state.todoList = updatedTodoList;
-            window.localStorage.setItem("todoList", JSON.stringify(updatedTodoList));
+            return state.filter((todo) => todo.id !== action.payload);
         },
         updateTodo: (state, action) => {
-            const { id, title, status } = action.payload;
-            const updatedTodoList = state.todoList.map((todo) =>
-                todo.id === id ? { ...todo, title, status } : todo
-            );
-            state.todoList = updatedTodoList;
-            window.localStorage.setItem("todoList", JSON.stringify(updatedTodoList));
+            const { id, title } = action.payload;
+            const todo = state.find((todo) => todo.id === id );
+            if(todo){
+                todo.title = title;
+            }
         },
         updateFilterStatus: (state, action) => {
-            state.filterStatus = action.payload;
+         return  action.payload === 'All' ? current(state) : state.filter(todo => todo.status === action.payload); 
         },
     },
 });
