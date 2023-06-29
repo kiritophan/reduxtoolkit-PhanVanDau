@@ -1,0 +1,10 @@
+.content-container{
+    display: flex;
+    justify-content: space-around;
+}
+ .modal-content {
+     background-color: rgb(236, 237, 246) !important;
+ }
+ .modal{
+    --bs-modal-margin: 9rem !important;
+ }
